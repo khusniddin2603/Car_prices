@@ -33,3 +33,7 @@ DROP TABLE car_prices
 SELECT *
 FROM car_prices
 limit 100
+
+SELECT 
+    DISTINCT(brand)
+FROM car_prices
