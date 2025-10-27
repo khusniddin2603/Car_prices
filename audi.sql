@@ -22,27 +22,6 @@ LIMIT 10;
 
 */
 
-
-/*
-    columns:
-    year
-    brand
-    model
-    trim
-    body
-    tranmission
-    vin
-    state
-    condition
-    odometer
-    color
-    interior
-    seller
-    mmr
-    sellingprice
-    saledate
-*/
-
 SELECT
     --COUNT(model) AS count_of_cars,
     model,
@@ -55,3 +34,35 @@ SELECT
 FROM car_prices
 WHERE brand='Audi'
 --GROUP BY milage_condition
+
+
+-- creating a table for audi cars only
+
+CREATE TABLE audi_cars AS
+    SELECT *
+    FROM car_prices
+    WHERE brand='Audi'
+
+SELECT *
+FROM audi_cars
+LIMIT 100
+
+
+--WHO SOLD THE MOST NUMBER OF SEDAN CARS, GIVE THE SELLER AND THE STATE, TOP10
+
+SELECT
+    state,
+    COUNT(seller) AS num_sold
+FROM audi_cars
+WHERE seller IN(
+SELECT 
+    seller
+FROM audi_cars
+WHERE body='Sedan'
+)
+GROUP BY state
+
+
+
+
+
